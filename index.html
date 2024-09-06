@@ -39,6 +39,34 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        var marker = L.marker([43.52553, 5.45266]).addTo(map);
+
+        var circle = L.circle([43.52553, 5.45266], {
+            color: 'green',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
+
+        var polygon = L.polygon([
+            [43.526, 5.5],
+            [43.53, 5.48],
+            [43.535, 5.453]
+        ]).addTo(map);
+
+        circle.bindPopup("This is the area around the Musee Granet in Aix-en-Provence, France!.");
+        
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+       
 
     </script>
 
